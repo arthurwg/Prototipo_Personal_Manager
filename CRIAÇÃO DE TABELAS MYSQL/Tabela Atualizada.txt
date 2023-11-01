@@ -1,0 +1,83 @@
+Exercicios:
+
+CREATE TABLE `exercicios` (
+  `cd_exercicio` int(11) NOT NULL,
+  `nm_exercicio` varchar(50) NOT NULL,
+  `video_exercicio` varchar(50) DEFAULT NULL,
+  `tipo_exercicio` varchar(50) DEFAULT NULL,
+  `grupamento` varchar(50) DEFAULT NULL
+)
+
+Inserção Eercícios:
+
+INSERT INTO `exercicios` (`cd_exercicio`, `nm_exercicio`, `video_exercicio`, `tipo_exercicio`, `grupamento`) VALUES
+(1, 'supino', NULL, 'musculação', 'peitoral'),
+(2, 'AgachamentoLivre', NULL, 'musculação', 'inferiores'),
+(3, 'RemadaCurvada', NULL, 'musculação', 'Costas'),
+(4, 'LevantamentoTerra', NULL, 'musculação', 'Inferiores'),
+(5, 'Supino Declinado', NULL, 'musculação', 'peitoral'),
+(6, 'Supino com Halteres', NULL, 'musculação', 'peitoral'),
+(7, 'Crucifixo', NULL, 'musculação', 'peitoral'),
+(8, 'Flexão Básica', NULL, 'musculação', 'peitoral'),
+(9, 'Voador', NULL, 'musculação', 'peitoral'),
+(10, 'Puxada Alta', NULL, 'musculação', 'Costas'),
+(11, 'Cavalinho', NULL, 'musculação', 'Costas'),
+(12, 'Serrote', NULL, 'musculação', 'Costas'),
+(13, 'Voador Dorsal', NULL, 'musculação', 'Costas'),
+(14, 'Barra Fixa', NULL, 'musculação', 'Costas'),
+(15, 'Remada com Corda', NULL, 'musculação', 'Costas'),
+(16, 'Afundo', NULL, 'musculação', 'Inferiores'),
+(17, 'Passada', NULL, 'musculação', 'Inferiores'),
+(18, 'cadeira Extensora', NULL, 'musculação', 'Inferiores'),
+(19, 'Cadeira Flexora', NULL, 'musculação', 'Inferiores');
+
+
+//
+
+
+Medidas:
+
+CREATE TABLE `medidas` (
+  `cd_medida` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_usuario` int(11) DEFAULT NULL,
+  `altura` int(11) DEFAULT NULL,
+  `peso` int(11) DEFAULT NULL,
+  `IMC` int(11) DEFAULT NULL,
+  `data_registro` date DEFAULT curdate(),
+  PRIMARY KEY (`cd_medida`),
+  KEY `medidas_fk` (`cod_usuario`),
+  CONSTRAINT `medidas_fk` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`cod_usuario`)
+)
+
+//
+
+Treinos:
+
+CREATE TABLE `treino` (
+  `cd_treino` int(11) NOT NULL,
+  `nm_treino` varchar(50) DEFAULT 'Treino Personalizado',
+  `cd_exercicio` int(11) NOT NULL,
+  `cd_usuario` int(11) DEFAULT NULL,
+  `repeticoes` int(11) NOT NULL,
+  `series` int(11) NOT NULL,
+  PRIMARY KEY (`cd_treino`,`cd_exercicio`),
+  KEY `treino_fk1` (`cd_usuario`),
+  KEY `treino_fk2` (`cd_exercicio`),
+  CONSTRAINT `treino_fk1` FOREIGN KEY (`cd_usuario`) REFERENCES `usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `treino_fk2` FOREIGN KEY (`cd_exercicio`) REFERENCES `exercicios` (`cd_exercicio`) ON DELETE CASCADE ON UPDATE CASCADE
+) 
+
+//
+
+CREATE TABLE `usuarios` (
+  `nm_usuario` varchar(50) NOT NULL,
+  `cod_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `cep` char(8) DEFAULT NULL,
+  `email` varchar(30) NOT NULL,
+  `peso` decimal(3,2) DEFAULT NULL,
+  `senha` varchar(50) NOT NULL,
+  `telefone` char(9) DEFAULT NULL,
+  PRIMARY KEY (`cod_usuario`)
+) 
+
+//

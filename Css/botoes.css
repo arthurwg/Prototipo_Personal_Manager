@@ -1,0 +1,13 @@
+/*mudar cor dos botões ao adicionar e remover exercicios*/
+
+.botao-adiciona {
+    background-color: green;
+    color: white;
+
+}
+
+.botao-padrao {
+    background-color: white;
+    color: black;
+
+}

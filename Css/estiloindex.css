@@ -1,0 +1,14 @@
+* {margin: 0; padding: 0;}        /*reset*/
+ul {list-style-type: none;}       
+img, fieldset {border: 0;}        
+h1, h2, h3, h4, h5, h6 {font-weight: normal;}  
+
+
+.imagem_logo_login{
+    height: 350px;
+}
+
+body {
+
+    margin: 0px;
+}
